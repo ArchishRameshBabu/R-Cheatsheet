@@ -2,7 +2,9 @@
 title: "R Visulaisation"
 author: "Archish Ramesh Babu"
 date: "May 29, 2019"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -18,10 +20,11 @@ Scatter plots are the easiest method to understand a set of continuous variable
 
 ```{r}
 library(data.table)
+library(ggplot2)
+
 data<-fread("C:/Users/archi/Desktop/Big Mart Dataset - Sheet1.csv")
 train=data.frame(data)
 ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point() + scale_x_continuous("Item Visibility", breaks = seq(0,0.35,0.05))+ scale_y_continuous("Item MRP", breaks = seq(0,270,by = 30))+ theme_bw() 
-
 
 ```
 
@@ -39,7 +42,7 @@ ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point(aes(color = Item_Type
 
 
 
-### Scatter plot plus categories
+### Scatter plot plus categories plus line
 
 ```{r}
 ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point(aes(color = Item_Type)) + 
@@ -50,7 +53,7 @@ ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point(aes(color = Item_Type
 
 ```
 
-### Scatter plot plus categories
+### Scatter plot plus categories plus line with facet_wrap
 
 ```{r}
 ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point(aes(color = Item_Type)) + 
@@ -61,7 +64,7 @@ ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point(aes(color = Item_Type
 ```
 
 
-### Scatter plot plus categories
+### + line
 
 ```{r}
 ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point(aes(color = Item_Type)) + 
@@ -72,7 +75,7 @@ ggplot(train, aes(Item_Visibility, Item_MRP)) + geom_point(aes(color = Item_Type
 
 ```
 
-## Adding Buddle size 
+## Adding Bubble size 
 
 ```{r}
 theme_set(theme_bw())  # pre-set the bw theme.
@@ -177,7 +180,7 @@ ggplot(mtcars, aes(x=`car name`, y=mpg_z, label=mpg_z)) +
 ```{r}
 
 #library(ggplot2)
-#library(scales)
+library(scales)
 theme_set(theme_classic())
 
 # prep data
@@ -261,7 +264,7 @@ g + geom_boxplot(aes(fill=factor(cyl))) +
 ## Adding Buddle size 
 
 ```{r}
-#library(ggthemes)
+library(ggthemes)
 options(scipen = 999)  # turns of scientific notations like 1e+40
 
 # Read data
